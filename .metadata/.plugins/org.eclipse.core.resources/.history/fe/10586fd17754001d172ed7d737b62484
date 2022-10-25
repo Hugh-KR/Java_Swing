@@ -1,0 +1,116 @@
+package login;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
+public class Login {
+	private static JTextField tf1;
+	private static JTextField tf2;
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame f = new JFrame();
+		
+		f.setSize(new Dimension(500, 300));
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocationRelativeTo(null);
+		f.setResizable(false);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{96, 84, 148, 92, 0};
+		gridBagLayout.rowHeights = new int[]{60, 26, 26, 35, 29, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		f.getContentPane().setLayout(gridBagLayout);
+		
+		JLabel JL1 = new JLabel("ID");
+		JL1.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_JL1 = new GridBagConstraints();
+		gbc_JL1.anchor = GridBagConstraints.EAST;
+		gbc_JL1.insets = new Insets(0, 0, 5, 5);
+		gbc_JL1.gridx = 1;
+		gbc_JL1.gridy = 1;
+		f.getContentPane().add(JL1, gbc_JL1);
+		
+		tf1 = new JTextField();
+		GridBagConstraints gbc_tf1 = new GridBagConstraints();
+		gbc_tf1.anchor = GridBagConstraints.NORTH;
+		gbc_tf1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tf1.insets = new Insets(0, 0, 5, 5);
+		gbc_tf1.gridx = 2;
+		gbc_tf1.gridy = 1;
+		f.getContentPane().add(tf1, gbc_tf1);
+		tf1.setColumns(10);
+		
+		JButton login_btn = new JButton("로그인");
+		GridBagConstraints gbc_login_btn = new GridBagConstraints();
+		gbc_login_btn.insets = new Insets(0, 0, 5, 0);
+		gbc_login_btn.gridheight = 2;
+		gbc_login_btn.gridx = 3;
+		gbc_login_btn.gridy = 1;
+		f.getContentPane().add(login_btn, gbc_login_btn);
+		
+		JLabel JL2 = new JLabel("PW");
+		JL2.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_JL2 = new GridBagConstraints();
+		gbc_JL2.anchor = GridBagConstraints.EAST;
+		gbc_JL2.insets = new Insets(0, 0, 5, 5);
+		gbc_JL2.gridx = 1;
+		gbc_JL2.gridy = 2;
+		f.getContentPane().add(JL2, gbc_JL2);
+		
+		tf2 = new JTextField();
+		GridBagConstraints gbc_tf2 = new GridBagConstraints();
+		gbc_tf2.anchor = GridBagConstraints.NORTH;
+		gbc_tf2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tf2.insets = new Insets(0, 0, 5, 5);
+		gbc_tf2.gridx = 2;
+		gbc_tf2.gridy = 2;
+		f.getContentPane().add(tf2, gbc_tf2);
+		tf2.setColumns(10);
+		
+		JButton id_src_btn = new JButton("ID 찾기");
+		GridBagConstraints gbc_id_src_btn = new GridBagConstraints();
+		gbc_id_src_btn.anchor = GridBagConstraints.NORTHWEST;
+		gbc_id_src_btn.insets = new Insets(0, 0, 0, 5);
+		gbc_id_src_btn.gridx = 1;
+		gbc_id_src_btn.gridy = 4;
+		f.getContentPane().add(id_src_btn, gbc_id_src_btn);
+		
+		JButton pw_src_btn = new JButton("PW 찾기");
+		pw_src_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_pw_src_btn = new GridBagConstraints();
+		gbc_pw_src_btn.anchor = GridBagConstraints.NORTH;
+		gbc_pw_src_btn.insets = new Insets(0, 0, 0, 5);
+		gbc_pw_src_btn.gridx = 2;
+		gbc_pw_src_btn.gridy = 4;
+		f.getContentPane().add(pw_src_btn, gbc_pw_src_btn);
+		
+		JButton reg_btn = new JButton("회원 가입");
+		reg_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_reg_btn = new GridBagConstraints();
+		gbc_reg_btn.anchor = GridBagConstraints.NORTHWEST;
+		gbc_reg_btn.gridx = 3;
+		gbc_reg_btn.gridy = 4;
+		f.getContentPane().add(reg_btn, gbc_reg_btn);
+		
+		f.setVisible(true);
+	}
+
+}

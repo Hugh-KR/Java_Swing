@@ -1,0 +1,74 @@
+package login;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Login {
+	private static JTextField textField;
+	private static JTextField textField_1;
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame f = new JFrame();
+		f.setVisible(true);
+		
+		f.setSize(new Dimension(500, 300));
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocationRelativeTo(null);
+		f.setResizable(false);
+		f.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setBounds(166, 65, 14, 16);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		f.getContentPane().add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(185, 60, 148, 26);
+		f.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton_3 = new JButton("로그인");
+		btnNewButton_3.setBounds(345, 74, 77, 29);
+		f.getContentPane().add(btnNewButton_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("PW");
+		lblNewLabel_1.setBounds(162, 96, 18, 16);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		f.getContentPane().add(lblNewLabel_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(185, 91, 148, 26);
+		f.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("ID 찾기");
+		btnNewButton.setBounds(96, 152, 84, 29);
+		f.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("PW 찾기");
+		btnNewButton_1.setBounds(215, 152, 88, 29);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		f.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("회원 가입");
+		btnNewButton_2.setBounds(338, 152, 92, 29);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		f.getContentPane().add(btnNewButton_2);
+	}
+
+}

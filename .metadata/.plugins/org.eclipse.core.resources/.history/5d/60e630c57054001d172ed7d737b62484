@@ -1,0 +1,18 @@
+package login;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+public class Login {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame f = new JFrame();
+		f.setVisible(true);
+		
+		f.setSize(new Dimension(500, 300));
+	}
+
+}

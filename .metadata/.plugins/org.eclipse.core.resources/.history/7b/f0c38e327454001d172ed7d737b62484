@@ -1,0 +1,116 @@
+package login;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
+public class Login {
+	private static JTextField textField;
+	private static JTextField textField_1;
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame f = new JFrame();
+		
+		f.setSize(new Dimension(500, 300));
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocationRelativeTo(null);
+		f.setResizable(false);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{96, 84, 148, 92, 0};
+		gridBagLayout.rowHeights = new int[]{60, 26, 26, 35, 29, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		f.getContentPane().setLayout(gridBagLayout);
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 1;
+		f.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.anchor = GridBagConstraints.NORTH;
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = 2;
+		gbc_textField.gridy = 1;
+		f.getContentPane().add(textField, gbc_textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton_3 = new JButton("로그인");
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_3.gridheight = 2;
+		gbc_btnNewButton_3.gridx = 3;
+		gbc_btnNewButton_3.gridy = 1;
+		f.getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("PW");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 1;
+		gbc_lblNewLabel_1.gridy = 2;
+		f.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.anchor = GridBagConstraints.NORTH;
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.gridx = 2;
+		gbc_textField_1.gridy = 2;
+		f.getContentPane().add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("ID 찾기");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 4;
+		f.getContentPane().add(btnNewButton, gbc_btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("PW 찾기");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTH;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.gridx = 2;
+		gbc_btnNewButton_1.gridy = 4;
+		f.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("회원 가입");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton_2.gridx = 3;
+		gbc_btnNewButton_2.gridy = 4;
+		f.getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		f.setVisible(true);
+	}
+
+}

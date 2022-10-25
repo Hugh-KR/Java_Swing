@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author shinchanghyeok
- *
- */
-module Swing {
-}
