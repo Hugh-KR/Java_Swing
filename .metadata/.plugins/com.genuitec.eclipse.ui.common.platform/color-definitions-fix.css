@@ -1914,7 +1914,6 @@ IEclipsePreferences#org-eclipse-jst-jsp-ui {
 }
 IEclipsePreferences#org-eclipse-mylyn-wikitext-ui {
 	preferences:
-		'block-bc=font-family: monospace; color: #569cd6;'
 		'block-h1=font-size: 120%; font-weight: bold; color: #118bbd;'
 		'block-h2=font-size: 110%; font-weight: bold; color: #118bbd;'
 		'block-h3=font-size: 105%; font-weight: bold; color: #118bbd;'
