@@ -42,7 +42,7 @@ public class Login extends JFrame {
 	 Font font1 = new Font("굴림체", Font.BOLD, 30);
 	 l1.setFont(font1);
 	 
-	 l1.setBounds(100, 70, 300, 100);
+	 l1.setBounds(100, 65, 300, 100);
 	 l2.setBounds(120, 195, 40, 40);
 	 l3.setBounds(120, 245, 40, 40);
 	 
@@ -55,8 +55,6 @@ public class Login extends JFrame {
 	 getContentPane().add(p);
 	 setSize(500, 500);
 	 setTitle("로그인");
-	 setLocationRelativeTo(null);
-	 setResizable(false);
 	 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 setVisible(true);
 	 

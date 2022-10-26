@@ -19,44 +19,40 @@ public class Login extends JFrame {
    public Login() {
 	 JPanel p = new JPanel();
 	 setLocationRelativeTo(p);
-	 Label l1 = new Label("학사관리시스템", Label.CENTER);
+	 Label l1 = new Label("MovieReservation", SwingConstants.CENTER);
 	 Label l2 = new Label("ID");
-	 l2.setAlignment(Label.CENTER);
-	 Label l3 = new Label("PW");
-	 l3.setAlignment(Label.CENTER);
-	 getContentPane().add(l1);
-	 getContentPane().add(l2);
-	 getContentPane().add(l3);
+	 Label l3 = new Label("PassWord");
+	 add(l1);
+	 add(l2);
+	 add(l3);
 	 
 	 TextField t1 = new TextField();
 	 TextField t2 = new TextField();
-	 getContentPane().add(t1);
-	 getContentPane().add(t2);
+	 add(t1);
+	 add(t2);
 	 t2.setEchoChar('*');
 	 
 	 JButton j1 = new JButton("로그인");
 	 JButton j2 = new JButton("회원가입");
-	 getContentPane().add(j1);
-	 getContentPane().add(j2);
+	 add(j1);
+	 add(j2);
 	 
 	 Font font1 = new Font("굴림체", Font.BOLD, 30);
 	 l1.setFont(font1);
 	 
-	 l1.setBounds(100, 70, 300, 100);
-	 l2.setBounds(120, 195, 40, 40);
-	 l3.setBounds(120, 245, 40, 40);
+	 l1.setBounds(120, 10, 10000, 100);
+	 l2.setBounds(40, 200, 40, 40);
+	 l3.setBounds(40, 250, 40, 40);
 	 
-	 t1.setBounds(170, 200, 200, 30);
-	 t2.setBounds(170, 250, 200, 30);
+	 t1.setBounds(120, 200, 200, 30);
+	 t2.setBounds(120, 250, 200, 30);
 	 
-	 j1.setBounds(145, 330, 80, 30);
-	 j2.setBounds(255, 330, 100, 30);
+	 j1.setBounds(125, 330, 80, 30);
+	 j2.setBounds(240, 330, 100, 30);
 	 
-	 getContentPane().add(p);
+	 add(p);
 	 setSize(500, 500);
 	 setTitle("로그인");
-	 setLocationRelativeTo(null);
-	 setResizable(false);
 	 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 setVisible(true);
 	 

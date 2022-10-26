@@ -55,8 +55,6 @@ public class Login extends JFrame {
 	 getContentPane().add(p);
 	 setSize(500, 500);
 	 setTitle("로그인");
-	 setLocationRelativeTo(null);
-	 setResizable(false);
 	 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 setVisible(true);
 	 
