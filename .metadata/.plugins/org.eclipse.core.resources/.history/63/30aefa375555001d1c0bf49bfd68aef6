@@ -14,7 +14,7 @@ public class MemberDAO {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/mydb";
 	String userid="abcd";
-	String pass = "12345678";
+	String password = "12345678";
 	
 	Connection conn = null; //연결
 	Statement stmt = null; //sql문 전달
@@ -22,16 +22,16 @@ public class MemberDAO {
 	ResultSet rs = null; //DB의 처리 결과를 받을 때 
 		
 	//메소드 구현
-	public void insertMember(String id, String password, String name, String tel) {
+	public void insertMember(String id, String name, String pwd, String phoneNumber) {
 		// 데이터베이스안에 자료를 삽입하기 
 		try {
-			conn = DriverManager.getConnection(url, userid, pass);
-			String query = "insert into student(id, password, name, tel) values ( ?, ?, ?, ? )";
+			conn = DriverManager.getConnection(url, userid, password);
+			String query = "insert into student(id, name, pwd, phoneNumber) values ( ?, ?, ?, ? )";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
-			pstmt.setString(2, password);
-			pstmt.setString(3, name);
-			pstmt.setString(4, tel);
+			pstmt.setString(2, name);
+			pstmt.setString(3, pwd);
+			pstmt.setString(4, phoneNumber);
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class MemberDAO {
 		// 아이디 중복 체크하기
 		boolean result = false;
 		try {
-			conn = DriverManager.getConnection(url, userid, pass);
+			conn = DriverManager.getConnection(url, userid, password);
 			String query = "select id from student where id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -76,16 +76,16 @@ public class MemberDAO {
 		return result;
 	}
 
-	public int login(String id, String password) {
+	public int login(String id, String pwd) {
 		// 로그인하기 아이디와 비밀번호를 member테이블 안에 있는지 확인하기
 	    try {
-			conn = DriverManager.getConnection(url, userid, pass);
+			conn = DriverManager.getConnection(url, userid, password);
 			String query = "select pwd from student where id=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if( rs.next() ) {
-				if( rs.getString(1).contentEquals(password) ) return 1;
+				if( rs.getString(1).contentEquals(pwd) ) return 1;
 				else return 0;
 			}
 			return 0;

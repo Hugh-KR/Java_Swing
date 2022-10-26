@@ -18,40 +18,35 @@ public class JoinMember extends JFrame {
 		JPanel p = new JPanel();
 		setLocationRelativeTo(p);
 		Label l1 = new Label("아이디");
-		l1.setAlignment(Label.CENTER);
 		Label l2 = new Label("비밀번호");
-		l2.setAlignment(Label.CENTER);
 		Label l3 = new Label("이름");
-		l3.setAlignment(Label.CENTER);
 		Label l4 = new Label("연락처");
-		l4.setAlignment(Label.CENTER);
-		
-		getContentPane().add(l1);
-		getContentPane().add(l2);
-		getContentPane().add(l3);
-		getContentPane().add(l4);
+		add(l1);
+		add(l2);
+		add(l3);
+		add(l4);
 
 		TextField t1 = new TextField();
 		TextField t2 = new TextField();
 		TextField t3 = new TextField();
 		TextField t4 = new TextField();
-		getContentPane().add(t1);
-		getContentPane().add(t2);
-		getContentPane().add(t3);
-		getContentPane().add(t4);
+		add(t1);
+		add(t2);
+		add(t3);
+		add(t4);
 		t3.setEchoChar('*');
 
 		JButton j1 = new JButton("저장");
 		JButton j2 = new JButton("취소");
 		JButton j3 = new JButton("ID중복체크");
-		getContentPane().add(j1);
-		getContentPane().add(j2);
-		getContentPane().add(j3);
+		add(j1);
+		add(j2);
+		add(j3);
 
-		l1.setBounds(40, 10, 60, 40);
-		l2.setBounds(40, 50, 60, 40);
+		l1.setBounds(40, 10, 40, 40);
+		l2.setBounds(40, 50, 40, 40);
 		l3.setBounds(40, 90, 60, 40);
-		l4.setBounds(40, 130, 60, 40);
+		l4.setBounds(40, 130, 40, 40);
 
 		t1.setBounds(120, 10, 200, 30);
 		t2.setBounds(120, 50, 200, 30);
@@ -62,7 +57,7 @@ public class JoinMember extends JFrame {
 		j2.setBounds(240, 330, 80, 30);
 		j3.setBounds(350, 10, 100, 30);
 
-		getContentPane().add(p);
+		add(p);
 		setSize(500, 500);
 		setTitle("회원가입");
 		setLocationRelativeTo(null);
