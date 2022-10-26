@@ -66,7 +66,7 @@ public class Login {
 		Connection conn = null;
 
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "abcd",
-				"12345678"); //로그인시 참고
+				"12345678");
 
 		return conn;
 	}
@@ -157,7 +157,7 @@ class LoginPanel extends JPanel implements ActionListener {
 
 			try {
 
-				String sql_query = String.format("SELECT password FROM login WHERE id = '%s' AND password ='%s'", //로그인시 참고
+				String sql_query = String.format("SELECT password FROM login WHERE id = '%s' AND password ='%s'",
 						id, pass);
 
 				Connection conn = lp.getConnection();
@@ -167,8 +167,7 @@ class LoginPanel extends JPanel implements ActionListener {
 				rset.next();
 
 				if (pass.equals(rset.getString(1))) {
-					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1); //로그인시 참고
-					
+					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
 				
 				} else
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
@@ -292,7 +291,7 @@ class signupPanel extends JPanel {
 				name = nameTf.getText();
 				age = ageTf.getText();
 
-				String sql = "insert into login(id, password, name, age) values (?,?,?,?)"; //로그인시 참고
+				String sql = "insert into login(id, password, name, age) values (?,?,?,?)";
 
 				Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$"); //8자 영문+특문+숫자
 				Matcher passMatcher = passPattern1.matcher(pass);
