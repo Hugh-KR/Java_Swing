@@ -39,7 +39,7 @@ public class JoinMember extends JFrame {
 		getContentPane().add(t2);
 		getContentPane().add(t3);
 		getContentPane().add(t4);
-		t2.setEchoChar('*');
+		t3.setEchoChar('*');
 
 		JButton j1 = new JButton("저장");
 		JButton j2 = new JButton("취소");
