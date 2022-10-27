@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import member.MemberDB;
+import member.MemberDAO;
 
 public class JoinMember extends JFrame {
 
@@ -81,7 +81,7 @@ public class JoinMember extends JFrame {
 				String name = t3.getText();
 				String tel = t4.getText();
 				//2. DB연결 담당 클래스 MemberDAO()
-				MemberDB dao = new MemberDB();
+				MemberDAO dao = new MemberDAO();
                 //3. dao안에 데이터를 삽입을 담당할 메소드를 구현하기
 				dao.insertMember( id, password, name, tel  );
 				JOptionPane.showMessageDialog(null, "회원 가입되었습니다. 축하합니다!");
@@ -104,7 +104,7 @@ public class JoinMember extends JFrame {
 		// ID중복체크버튼에 대한 이벤트처리
 		j3.addActionListener(new ActionListener() {
 			
-            MemberDB dao = new MemberDB();
+            MemberDAO dao = new MemberDAO();
 			
             @Override
 			public void actionPerformed(ActionEvent e) {

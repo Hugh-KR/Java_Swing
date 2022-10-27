@@ -7,3 +7,4 @@
 1666806001828	Rename field 'password'
 1666806018791	Rename local variable 'pwd'
 1666806194248	Rename local variable 'pwd'
+1666830473928	Rename type 'MemberDAO'

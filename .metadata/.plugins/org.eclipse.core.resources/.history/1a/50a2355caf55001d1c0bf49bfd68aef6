@@ -72,12 +72,13 @@ public class Login extends JFrame {
 				String pwd = t2.getText();
 				MemberDB dao = new MemberDB();
 				int result = dao.login(id, pwd);
-				if (id.equals("manager")) {
-					JOptionPane.showMessageDialog(null, "관리자로 로그인 했습니다.");
-				} else if (result == 1) {
+				if (result == 1) {
 					JOptionPane.showMessageDialog(null, " 로그인 했습니다.");
 				} else if (result == 0) {
 					JOptionPane.showMessageDialog(null, " 로그인이 실패했습니다.");
+				}
+				if (id.equals("manager") && pwd.equals("1234")) {
+					JOptionPane.showMessageDialog(null, "관리자로 로그인 했습니다.");
 				}
 			}
 		});
