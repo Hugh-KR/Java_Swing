@@ -1,5 +1,6 @@
 package mainView;
 
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -16,6 +17,9 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+
+
 public class ViewerMain {
 	private static JTextField nameInput;
 	private static JTextField numInput;
@@ -28,15 +32,16 @@ public class ViewerMain {
 	private static JLabel genderText;
 
 	static String name;
-	static String num;
+	static int num;
 	static String gender;
 	static String phone;
 	static String email;
-	static String[] userData = new String[5];
+	static String[] userData = new String[4];
+	
 	
 	public static void main(String[] args) {
 		
-		
+		AccessDB adb = new AccessDB();
 		
 		String tableHeader[] = {"학번", "이름", "성별", "전화번호", "이메일"};
 		String tableContents[][] = {
@@ -151,33 +156,25 @@ public class ViewerMain {
 		JButton upload = new JButton("등록");
 		upload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				name = nameInput.getText();
+				num = Integer.parseInt(numInput.getText());
 				userData[0] = nameInput.getText();
-				num = numInput.getText();
-				userData[1] = numInput.getText();
 				phone = (phoneText01.getText() + "-" +phoneText02.getText() + "-" +phoneText3.getText());
-				userData[2] = (phoneText01.getText() + "-" +phoneText02.getText() + "-" +phoneText3.getText());
+				userData[1] = (phoneText01.getText() + "-" +phoneText02.getText() + "-" +phoneText3.getText());
 				if(male.isSelected()) {
 					gender = "남";
-					userData[3] = "남";
+					userData[2] = "남";
 				}else {
 					gender = "여";
-					userData[3] = "여";
+					userData[2] = "여";
 				}
 				email = emailInput.getText();
-				userData[4] = emailInput.getText();
+				userData[3] = emailInput.getText();
 				
-				
-				/*System.out.println(name);
-				System.out.println(num);
-				System.out.println(phone);
-				System.out.println(gender);
-				System.out.println(email);*/
-				
-				for(int i = 0 ; i < userData.length ; i++) {
-					System.out.println(userData[i]);
+				if(adb.insert(num, userData[0], userData[1], userData[2], userData[3]) == 1) {
+					System.out.println("저장에 성공하였습니다.");
+				}else {
+					System.out.println("중복된 데이터가 존재합니다.");
 				}
-				
 			}
 		});
 		upload.setBounds(26, 601, 77, 65);
