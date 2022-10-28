@@ -1,0 +1,44 @@
+package search;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.GridLayout;
+
+public class SearchGUI extends JDialog implements ActionListener{
+	
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		  JPanel pw=new JPanel(new GridLayout(4,1));
+		  JPanel pc=new JPanel(new GridLayout(4,1));
+		  JPanel ps=new JPanel();
+		  
+		  JLabel lable_Id = new JLabel("ID");
+		  JLabel lable_Name=new JLabel("이름");
+		  JLabel lable_Age=new JLabel("나이");
+		  JLabel lable_Addr=new JLabel("주소");
+		  
+		  JTextField id=new JTextField();
+		  JTextField name=new JTextField();
+		  JTextField age=new JTextField();
+		  JTextField addr=new JTextField();
+		  
+		  JButton confirm;
+		  JButton reset=new JButton("취소");
+		  
+		f.setSize(500,400);
+		f.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel = new JPanel();
+		f.getContentPane().add(panel);
+		f.setVisible(true);
+		
+		
+		
+		
+	}
+}

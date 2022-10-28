@@ -1,0 +1,60 @@
+package search;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Search {
+	
+	JPanel jpl;
+	Search srch;
+	GridLayout grid;
+	
+
+	public static void main(String[] args) {
+		Search srch = new Search();
+		srch.setFrame(srch);
+			
+	}
+	
+	public void setFrame(Search serch) {
+		JFrame f = new JFrame();
+		
+		
+		grid = new GridLayout();
+		
+		jpl = new JPanel(grid);
+		jpl.add(sp.mainPanel,"SELECT");
+		
+		
+		
+		f.setSize(500,400);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocationRelativeTo(null);
+		f.setResizable(false);
+		
+
+	}
+	public Connection getConnection() throws SQLException {
+		Connection conn = null;
+		
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root","1234");
+		
+		return conn;
+	}
+		
+}
+class SearchPanel extends JPanel implements ActionListener {
+	
+	
+}
+
+

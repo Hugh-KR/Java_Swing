@@ -1,0 +1,32 @@
+package search;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Search {
+	
+	JPanel jpl;
+	Search srch;
+	GridLayout grid;
+	
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		f.setSize(500,400);
+		f.getContentPane().setLayout(null);
+		f.setVisible(true);
+	
+	
+	}
+}
+
+
+

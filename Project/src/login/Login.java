@@ -65,8 +65,8 @@ public class Login {
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "abcd",
-				"12345678");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/member", "root",
+				"1234");
 
 		return conn;
 	}

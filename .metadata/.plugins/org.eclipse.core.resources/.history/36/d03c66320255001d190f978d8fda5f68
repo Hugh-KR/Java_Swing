@@ -1,0 +1,20 @@
+package search;
+
+import javax.swing.JFrame;
+
+public class SearchGUI {
+	
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		f.setSize(500,400);
+		f.getContentPane().setLayout(null);
+		f.setVisible(true);
+		
+		
+	}
+	
+	
+
+}
