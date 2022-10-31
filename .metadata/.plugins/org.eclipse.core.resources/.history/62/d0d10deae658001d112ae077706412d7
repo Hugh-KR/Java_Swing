@@ -1,0 +1,163 @@
+package search2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+public class MemberDAO {
+	 /**
+     * 필요한 변수선언
+     * */
+    Connection con;
+    Statement st;
+    PreparedStatement ps;
+    ResultSet rs;
+    /**
+     * DB닫기 기능 메소드
+     * */
+    public void dbClose() {
+        try {
+            if (rs != null) rs.close();
+            if (st != null) st.close();
+            if (ps != null) ps.close();
+        } catch (Exception e) {
+            System.out.println(e + "=> dbClose fail");
+        }
+    }//dbClose() ---
+    
+	/**
+     * userlist의 모든 레코드 조회
+     * */
+    public void userSelectAll(DefaultTableModel t_model) {
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("select * from student order by id");
+ 
+            // DefaultTableModel에 있는 기존 데이터 지우기
+            for (int i = 0; i < t_model.getRowCount();) {
+                t_model.removeRow(0);
+            }
+ 
+            while (rs.next()) {
+                Object data[] = { rs.getString(1), rs.getString(2),
+                        rs.getInt(3), rs.getString(4) };
+ 
+                t_model.addRow(data); //DefaultTableModel에 레코드 추가
+            }
+ 
+        } catch (SQLException e) {
+            System.out.println(e + "=> userSelectAll fail");
+        } finally {
+            dbClose();
+        }
+    }//userSelectAll()
+    /**
+     * 검색단어에 해당하는 레코드 검색하기 (like연산자를 사용하여 _, %를 사용할때는 PreparedStatemnet안된다. 반드시
+     * Statement객체를 이용함)
+     * */
+    public void getUserSearch(DefaultTableModel dt, String fieldName,
+            String word) {
+        String sql = "SELECT * FROM STUDENT WHERE " + fieldName.trim()
+                + " LIKE '%" + word.trim() + "%'";
+ 
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+ 
+            // DefaultTableModel에 있는 기존 데이터 지우기
+            for (int i = 0; i < dt.getRowCount();) {
+                dt.removeRow(0);
+            }
+ 
+            while (rs.next()) {
+                Object data[] = { rs.getString(1), rs.getString(2),
+                        rs.getInt(3), rs.getString(4) };
+ 
+                dt.addRow(data);
+            }
+ 
+        } catch (SQLException e) {
+            System.out.println(e + "=> getUserSearch fail");
+        } finally {
+            dbClose();
+        }
+ 
+    }//getUserSearch()
+    
+    
+    
+    
+    
+	
+//	public MemberVO select(String id) {
+//		//자바에서 DBMS를 연결하려고 함.
+//		//JDBC 프로그래밍 절차
+//		//4단계 절차
+//		//1. 드라이버 설정- 드라이버(커넥터) 로딩
+//		//   db의 유형, 버전에 따라 매우 많음.
+//		//   필요할 때 다운로드 받아 써야 함.
+//		MemberVO bag = null;
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			//특정한 위치에 있는 드라이버 파일을 램에 읽어들여 설정
+//			System.out.println("1. 드라이버 설정 성공.@@@@");
+//			
+//			
+//			//2. db연결 mySQL: school, oracle: xe
+//			String url = "jdbc:mysql://localhost:3306/member?useUnicode=true&serverTimezone=Asia/Seoul";
+//			String user = "root";
+//			String password = "1234"; 
+//			Connection con = DriverManager.getConnection(url, user, password); //Connection
+//			System.out.println("2. db연결 성공.@@@@@@");
+//			
+//			//3. sql문을 만든다. 
+//			String sql = "SELECT * FROM STUDENT WHERE "+id.trim()+" LIKE '%'"+ word.trim()+"'%"; 
+//			//준비된 문장(Preparedstatement)
+//			PreparedStatement ps = con.prepareStatement(sql);
+//			ps.setString(1, id); //1번 물음표에 id에 저장해놓은 값을 스트링으로 넣어줘!
+//			
+//			System.out.println("3. sql문 생성 성공.@@@@@");
+//			//String site = "http://www.naver.com";
+//			//Url url = new Url(site); //객체화!!
+//			
+//			ResultSet rs = ps.executeQuery();
+//			if (rs.next()) {
+//				int s_id1 = rs.getInt("s_id");
+//				String s_name1 = rs.getString("s_name");
+//				String s_gender1 = rs.getString("s_gender");
+//				String s_tel1 = rs.getString("s_tel");
+//				String s_email1 = rs.getString("s_email");
+//				JOptionPane.showMessageDialog(null,s_id1+" "+ s_name1+" "+s_gender1+" "+s_tel1+" "+s_email1);
+//							
+//				bag = new MemberVO();
+//				
+//				bag.setS_id(s_id1);
+//				bag.setS_name(s_name1);
+//				bag.setS_gender(s_gender1);
+//				bag.setS_tel(s_tel1);
+//				bag.setS_email(s_email1);
+//				
+//			}
+//			ps.close();
+//			con.close();
+//			rs.close();
+//			
+//		
+////			System.out.println("4. sql문 db서버로 전송 성공. @@@@@ 반영된 row수 >>" );
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} 
+//		return bag;
+//		
+//	} //select
+	
+	
+	
+}

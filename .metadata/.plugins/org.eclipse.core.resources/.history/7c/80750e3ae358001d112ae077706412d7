@@ -1,0 +1,62 @@
+package search2;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JTable;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Membergui {
+	private static JTextField textField;
+	private static JTable table;
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		f.setSize(500, 700);
+		f.getContentPane().setLayout(null);
+		
+		
+		String[] comboName = { "  ALL  ", "  학번  ", " 이름 ", " 성별 "," 전화번호 "," 이메일 " };
+		JComboBox combo = new JComboBox(comboName);
+		combo.setBounds(23, 41, 67, 23);
+		f.getContentPane().add(combo);
+		
+		textField = new JTextField();
+		textField.setBounds(95, 42, 278, 22);
+		f.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		table = new JTable();
+		table.setBackground(Color.BLUE);
+		table.setForeground(Color.DARK_GRAY);
+		table.setBounds(41, 448, 403, -338);
+		f.getContentPane().add(table);
+		
+		
+		
+		JButton btnNewButton = new JButton("조회");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String fieldName = combo.getSelectedItem().toString();
+				System.out.println("필드명 "+fieldName);
+				
+				if(fieldName.trim().equals("ALL")) {//전체검색 
+					//dao.
+					
+				}
+				
+				
+				
+			}
+		});
+		btnNewButton.setBounds(375, 41, 97, 23);
+		f.getContentPane().add(btnNewButton);
+
+		f.setVisible(true);
+	}
+}

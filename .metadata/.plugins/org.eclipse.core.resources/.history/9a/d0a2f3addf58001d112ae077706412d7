@@ -1,0 +1,75 @@
+package search2;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+public class MemberDAO {
+	
+	public MemberVO select(String id) {
+		//자바에서 DBMS를 연결하려고 함.
+		//JDBC 프로그래밍 절차
+		//4단계 절차
+		//1. 드라이버 설정- 드라이버(커넥터) 로딩
+		//   db의 유형, 버전에 따라 매우 많음.
+		//   필요할 때 다운로드 받아 써야 함.
+		GasifanVO bag = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//특정한 위치에 있는 드라이버 파일을 램에 읽어들여 설정
+			System.out.println("1. 드라이버 설정 성공.@@@@");
+			
+			
+			//2. db연결 mySQL: school, oracle: xe
+			String url = "jdbc:mysql://localhost:3306/member?useUnicode=true&serverTimezone=Asia/Seoul";
+			String user = "root";
+			String password = "1234"; 
+			Connection con = DriverManager.getConnection(url, user, password); //Connection
+			System.out.println("2. db연결 성공.@@@@@@");
+			
+			//3. sql문을 만든다. 
+			String sql = "select * from student where id = ?"; 
+			//준비된 문장(Preparedstatement)
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, id); //1번 물음표에 id에 저장해놓은 값을 스트링으로 넣어줘!
+			
+			System.out.println("3. sql문 생성 성공.@@@@@");
+			//String site = "http://www.naver.com";
+			//Url url = new Url(site); //객체화!!
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String id1 = rs.getString("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				JOptionPane.showMessageDialog(null, id1+" "+title+" "+content+" "+writer);
+				System.out.println(id1+" "+title+" "+content+" "+writer);			
+				bag = new GasifanVO();
+				
+				bag.setId(id1);
+				bag.setTitle(title);
+				bag.setContent(content);
+				bag.setWriter(writer);
+			}
+			ps.close();
+			con.close();
+			rs.close();
+			
+		
+//			System.out.println("4. sql문 db서버로 전송 성공. @@@@@ 반영된 row수 >>" );
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return bag;
+		
+	} //select
+	
+	
+	
+}

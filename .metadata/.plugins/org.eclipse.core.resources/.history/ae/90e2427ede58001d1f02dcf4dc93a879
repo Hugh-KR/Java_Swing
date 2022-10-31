@@ -1,0 +1,18 @@
+package search2;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+
+public class Membergui {
+
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		f.setSize(500, 700);
+		f.getContentPane().setLayout(null);
+
+		f.setVisible(true);
+	}
+
+}

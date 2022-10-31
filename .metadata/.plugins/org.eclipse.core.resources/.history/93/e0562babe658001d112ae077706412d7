@@ -1,0 +1,77 @@
+package search2;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import search.UserDefaultJTableDAO;
+
+import javax.swing.JTable;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Membergui {
+	private static JTextField t1;
+	private static UserDefaultJTableDAO dao =new UserDefaultJTableDAO();
+	private static String[] name = { "학번", "이름", "성별", "전화번호","이메일"};
+	private static DefaultTableModel dt = new DefaultTableModel(name,0);
+	private static JTable jt = new JTable(dt);
+	
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		
+		f.setSize(500, 700);
+		f.getContentPane().setLayout(null);
+	    String[] comboName = { "  ALL  ", "  학번  ", " 이름 ", " 성별 "," 전화번호 "," 이메일 " };
+		
+		
+		JComboBox combo = new JComboBox(comboName);
+		combo.setBounds(23, 41, 67, 23);
+		f.getContentPane().add(combo);
+		
+		t1 = new JTextField();
+		t1.setBounds(95, 42, 278, 22);
+		f.getContentPane().add(t1);
+		t1.setColumns(10);
+		
+		jt = new JTable();
+		jt.setBackground(Color.BLUE);
+		jt.setForeground(Color.DARK_GRAY);
+		jt.setBounds(41, 448, 403, -338);
+		f.getContentPane().add(jt);
+		
+		
+		
+		JButton search = new JButton("조회");
+		search.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == search) {
+					String fieldName = combo.getSelectedItem().toString();
+					System.out.println("필드명 " + fieldName);
+					if(fieldName.trim().equals("ALL")) {
+						dao.userSelectAll(dt);
+						if (dt.getRowCount() >0)
+							jt.setRowSelectionInterval(0, 0);	
+					}else {
+						if(t1.getText().trim().equals("")) {
+							
+						}
+					}
+
+					
+				}
+				
+				
+				
+			}
+		});
+		search.setBounds(375, 41, 97, 23);
+		f.getContentPane().add(search);
+
+		f.setVisible(true);
+	}
+}
