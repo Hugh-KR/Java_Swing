@@ -1,0 +1,110 @@
+package main2;
+
+//UserJDailogGUI.java
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class UserJDailogGUI extends JDialog implements ActionListener{
+ 
+  JPanel pw=new JPanel(new GridLayout(5,1));
+  JPanel pc=new JPanel(new GridLayout(5,1));
+  JPanel ps=new JPanel();
+
+  JLabel lable_Id = new JLabel("ID");
+  JLabel lable_Name=new JLabel("이름");
+  JLabel lable_Gender=new JLabel("성별");
+  JLabel lable_tel=new JLabel("연락처");
+  JLabel lable_email=new JLabel("이메일");
+
+
+  JTextField s_id=new JTextField();
+  JTextField s_name=new JTextField();
+  JTextField s_gender=new JTextField();
+  JTextField s_tel=new JTextField();
+  JTextField s_email=new JTextField();
+ 
+
+  JButton confirm;
+  JButton reset=new JButton("취소");
+
+ MenuJTabaleExam me;
+
+ JPanel idCkP =new JPanel(new BorderLayout());
+ JButton idCkBtn = new JButton("IDCheck");
+ 
+ UserDefaultJTableDAO dao =new UserDefaultJTableDAO();
+ 
+
+  public UserJDailogGUI(MenuJTabaleExam me, String index){
+      super(me,"다이어로그");
+      this.me=me;
+      if(index.equals("등록")){
+          confirm=new JButton(index);
+      }else{
+          confirm=new JButton("수정"); 
+         
+          //text박스에 선택된 레코드의 정보 넣기
+          int row = me.jt.getSelectedRow();//선택된 행
+          s_id.setText( me.jt.getValueAt(row, 0).toString() );
+          s_name.setText( me.jt.getValueAt(row, 1).toString() );
+          s_gender.setText( me.jt.getValueAt(row, 2).toString() );
+          s_tel.setText( me.jt.getValueAt(row, 3).toString() );
+          s_email.setText( me.jt.getValueAt(row, 4).toString() );
+     
+         
+          //id text박스 비활성
+          s_id.setEditable(false);
+ 
+          //IDCheck버튼 비활성화
+          idCkBtn.setEnabled(false);
+      }
+     
+     
+      //Label추가부분
+      pw.add(lable_Id);//ID
+      pw.add(lable_Name);//이름
+      pw.add(lable_Gender);//성별
+      pw.add(lable_tel);//연락처
+      pw.add(lable_email);//이메일
+ 
+     
+      idCkP.add(s_id,"Center");
+      idCkP.add(idCkBtn,"East");
+     
+      //TextField 추가
+      pc.add(idCkP);
+      pc.add(s_name);
+      pc.add(s_gender);
+      pc.add(s_tel);
+      pc.add(s_email);
+     
+     
+     
+      ps.add(confirm);
+      ps.add(reset);
+ 
+      add(pw,"West");
+      add(pc,"Center");
+      add(ps,"South");
+     
+      setSize(300,350);
+      setVisible(true);
+
+      setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+     
+      
+  }//생성자끝
+ 
+  
+
+}//클래스끝

@@ -8,3 +8,15 @@
 1666806018791	Rename local variable 'pwd'
 1666806194248	Rename local variable 'pwd'
 1666830473928	Rename type 'MemberDAO'
+1666847242048	Copy compilation unit
+1666847266333	Rename type 'JoinMember2'
+1666873768726	Copy package
+1666873786206	Delete element
+1666879492984	Copy package
+1666879907420	Delete element
+1666880062852	Delete element
+1666880070402	Copy package
+1666880779230	Delete element
+1666880860237	Rename type 'MenuJTabaleExam'
+1666880884562	Rename type 'Main'
+1666881241270	Rename type 'UserDefaultJTableDAO'

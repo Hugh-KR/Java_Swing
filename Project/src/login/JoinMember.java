@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import member.MemberDB;
+import loginDb.MemberDB;
 
 public class JoinMember extends JFrame {
 
@@ -70,20 +70,24 @@ public class JoinMember extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 
+		//login MemberVO 생성
+		MemberVO bag = new MemberVO();
 		// 저장버튼에 대한 이벤트처리
 		j1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 1단계 텍스트 상자의 값을 가지고 온다 2. DB연결하여 3.DB안 넣어주기
-				String id = t1.getText();
-				String password = t2.getText();
-				String name = t3.getText();
-				String tel = t4.getText();
+				bag.setId(t1.getText());
+				bag.setPassword(t2.getText());
+				bag.setName(t3.getText());
+				bag.setTel(t4.getText());
+
 				//2. DB연결 담당 클래스 MemberDAO()
 				MemberDB dao = new MemberDB();
+		
                 //3. dao안에 데이터를 삽입을 담당할 메소드를 구현하기
-				dao.insertMember( id, password, name, tel  );
+				dao.insertMember(bag);
 				JOptionPane.showMessageDialog(null, "회원 가입되었습니다. 축하합니다!");
 				Login login = new Login();
 				dispose();

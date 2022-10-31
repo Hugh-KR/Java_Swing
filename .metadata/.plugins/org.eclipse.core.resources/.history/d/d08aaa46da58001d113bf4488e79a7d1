@@ -1,0 +1,5 @@
+package memberDb;
+
+public class MemberVO {
+
+}

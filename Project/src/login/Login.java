@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import member.MemberDB;
+import loginDb.MemberDB;
 
 public class Login extends JFrame {
 
@@ -37,6 +37,7 @@ public class Login extends JFrame {
 		JButton j1 = new JButton("로그인");
 		JButton j2 = new JButton("회원가입");
 		JButton j3 = new JButton("ID/PW 찾기");
+	
 		getContentPane().add(j1);
 		getContentPane().add(j2);
 		getContentPane().add(j3);
@@ -88,6 +89,13 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JoinMember joinMember = new JoinMember();
+				dispose();
+			}
+		});
+		// IDPW찾기 구현중
+		j3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SearchMember searchMember = new SearchMember();
 				dispose();
 			}
 		});

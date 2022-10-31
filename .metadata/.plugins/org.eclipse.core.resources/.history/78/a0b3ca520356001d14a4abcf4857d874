@@ -1,0 +1,38 @@
+package main2;
+
+//UserJDailogGUI.java
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class UserJDailogGUI extends JDialog {
+
+	JPanel ps = new JPanel();
+
+	MenuJTabaleExam me;
+
+	JPanel idCkP = new JPanel(new BorderLayout());
+
+	UserDefaultJTableDAO dao = new UserDefaultJTableDAO();
+
+	public UserJDailogGUI(MenuJTabaleExam me, String index) {
+
+		add(ps, "South");
+
+		setSize(300, 350);
+		setVisible(true);
+
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+	}// 생성자끝
+
+}// 클래스끝

@@ -1,0 +1,5 @@
+package loginDb;
+
+public class MemberVO {
+
+}
