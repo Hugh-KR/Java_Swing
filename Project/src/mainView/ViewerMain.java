@@ -1,20 +1,27 @@
 package mainView;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 
@@ -37,21 +44,43 @@ public class ViewerMain {
 	static String phone;
 	static String email;
 	static String[] userData = new String[4];
-	
+	static String mailAdrr = null;
 	
 	public static void main(String[] args) {
 		
+		JFrame viewer = new JFrame();
+		viewer.setSize(400,700);
+		
 		AccessDB adb = new AccessDB();
 		
-		String tableHeader[] = {"학번", "이름", "성별", "전화번호", "이메일"};
-		String tableContents[][] = {
-				{"20221234", "홍길동", "남", "010-1234-1234", "email1234@gmail.com"},
-				{"20221234", "홍길동", "남", "010-1234-1234", "email1234@gmail.com"}
-		};
+		String[] tableHeader = {"학번", "이름", "성별", "전화번호", "이메일"};
+		ArrayList<UserVO> list = adb.list();
 		
-		JFrame viewer = new JFrame();
+		Object[][] contents = new Object[list.size()][5];
+		for(int i = 0; i<contents.length ; i++) {
+			for(int j = 0; j < 4 ; j++) {
+				contents[i][0] =list.get(i).getId();
+				contents[i][1] =list.get(i).getName();
+				contents[i][2] =list.get(i).getGender();
+				contents[i][3] =list.get(i).getTel();
+				contents[i][4] =list.get(i).getEmail();
+			}
+		}
 		
-		viewer.setSize(400,700);
+		JPanel panel = new JPanel();
+		viewer.getContentPane().add(panel, BorderLayout.SOUTH);
+		
+		JTable table = new JTable(contents,tableHeader);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		table.setBounds(26, 232, 344, 357);
+		viewer.getContentPane().add(table);
+		
+		
 		viewer.getContentPane().setLayout(null);
 		
 		JLabel nameText = new JLabel("이름");
@@ -149,9 +178,7 @@ public class ViewerMain {
 		serchText.setBounds(126, 188, 110, 32);
 		viewer.getContentPane().add(serchText);
 		
-		JTable table = new JTable(tableContents,tableHeader);
-		table.setBounds(26, 232, 344, 357);
-		viewer.getContentPane().add(table);
+		
 		
 		JButton upload = new JButton("등록");
 		upload.addActionListener(new ActionListener() {
@@ -185,10 +212,23 @@ public class ViewerMain {
 		viewer.getContentPane().add(shutdown);
 		
 		JButton delete = new JButton("삭제");
+		delete.addActionListener(new ActionListener() {		//버튼 클릭리스너
+			public void actionPerformed(ActionEvent e) {
+				int rowNo = table.getSelectedRow();		//선택된 행의 번호를 불러와 rowNo에 저장
+				mailAdrr = (String) table.getModel().getValueAt(rowNo,4);	//해당 행의 5번째 값을 mailAdrr에 저장 
+				OpenWeb.ow(mailAdrr);	//mailAdrr에 저장된 이메일을 OpenWeb클래스의 ow메소드로 넘김
+				System.out.println(mailAdrr);	//선택된 이메일 콘솔창 확인용
+			}
+		});
 		delete.setBounds(201, 601, 77, 65);
 		viewer.getContentPane().add(delete);
 		
 		JButton edit = new JButton("수정");
+		edit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		edit.setBounds(112, 601, 77, 65);
 		viewer.getContentPane().add(edit);
 		
