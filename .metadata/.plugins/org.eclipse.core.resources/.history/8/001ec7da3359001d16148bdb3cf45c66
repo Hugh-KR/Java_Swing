@@ -1,0 +1,44 @@
+package search2;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.awt.Font;
+
+public class MemberJDailog extends JDialog implements ActionListener{
+	private JTextField textField;
+	
+	
+	public MemberJDailog() {
+		getContentPane().setLayout(null);
+		
+		
+		String[] comboName = { "  ALL  ", "  s_id  ", " s_name ", " s_gender "," s_tel "," s_email " };
+		JComboBox comboBox = new JComboBox(comboName);
+		comboBox.setBounds(9, 111, 76, 23);
+		getContentPane().add(comboBox);
+		
+		textField = new JTextField();
+		textField.setBounds(97, 108, 208, 29);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("찾기");
+		btnNewButton.setFont(new Font("굴림", Font.BOLD, 22));
+		btnNewButton.setBounds(317, 106, 97, 29);
+		getContentPane().add(btnNewButton);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

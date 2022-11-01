@@ -1,0 +1,10 @@
+package search2;
+
+public class MemberJDailog {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
