@@ -23,6 +23,7 @@
             <entry path="/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/lib/endorsed"/>
         </endorsedDirs>
     </libraryInfo>
+    <libraryInfo home="C:\Users\su000\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.4.v20221004-1257\jre" version="17.0.4.1"/>
     <libraryInfo home="/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home" version="1.8.0_345">
         <bootpath>
             <entry path="/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre/lib/resources.jar"/>
@@ -98,4 +99,5 @@
             <entry path="/Users/shinchanghyeok/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/jre/lib/endorsed"/>
         </endorsedDirs>
     </libraryInfo>
+    <libraryInfo home="C:\Users\su000\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.4.v20221004-1257" version="17.0.4.1"/>
 </libraryInfos>
