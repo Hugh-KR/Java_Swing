@@ -12,12 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import javax.swing.table.DefaultTableModel;
+
 
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -29,6 +31,9 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 	JButton update = new JButton("수정");
 	JButton delete = new JButton("삭제");
 	JButton quit = new JButton("종료");
+	JButton email = new JButton("이메일 보내기");
+	JButton search = new JButton("검색");
+	JButton detail = new JButton("조회");
 
 	JTextField t_name = new JTextField();
 	JTextField t_id = new JTextField();
@@ -49,20 +54,12 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 
 	
 	String[] name = { "학번", "이름", "성별", "연락처", "이메일" };
+	String mailAdrr = null;
 
 	DefaultTableModel dt = new DefaultTableModel(name, 0);
 	JTable jt = new JTable(dt);
 	JScrollPane jsp = new JScrollPane(jt);
-
-	/*
-	 * South 영역에 추가할 Componet들
-	 */
-	JPanel p = new JPanel();
 	String[] comboName = { "  ALL  ", "  s_id  ", " s_name ", " tel " };
-
-	JComboBox combo = new JComboBox(comboName);
-	JTextField jtf = new JTextField(10);
-	JButton serach = new JButton("검색");
 
 	UserDefaultJTableDAO dao = new UserDefaultJTableDAO();
 
@@ -78,23 +75,15 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 		getContentPane().add(update);
 		getContentPane().add(delete);
 		getContentPane().add(quit);
-		p.setBounds(0, 506, 750, 39);
 
 		insert.setBounds(6, 465, 117, 29);
 		update.setBounds(133, 465, 117, 29);
 		delete.setBounds(262, 465, 117, 29);
 		quit.setBounds(391, 465, 117, 29);
-
-		// South영역
-		p.setBackground(Color.yellow);
-		p.add(combo);
-		p.add(jtf);
-		p.add(serach);
 		getContentPane().setLayout(null);
 		jsp.setBounds(0, 211, 750, 185);
 
 		getContentPane().add(jsp);
-		getContentPane().add(p);
 
 		lable_Name.setHorizontalAlignment(SwingConstants.CENTER);
 		lable_Id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,28 +136,50 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 		ButtonGroup genderBtn = new ButtonGroup();
 		genderBtn.add(female);
 		genderBtn.add(male);
+		
+		email.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int rowNo = jt.getSelectedRow();		//선택된 행의 번호를 불러와 rowNo에 저장
+				mailAdrr = (String) jt.getModel().getValueAt(rowNo,4);	//해당 행의 5번째 값을 mailAdrr에 저장 
+				OpenWeb.ow(mailAdrr);	//mailAdrr에 저장된 이메일을 OpenWeb클래스의 ow메소드로 넘김
+				System.out.println(mailAdrr);	//선택된 이메일 콘솔창 확인용
+			}
+		});
+		email.setBounds(6, 434, 117, 29);
+		getContentPane().add(email);
+		
+		search.setBounds(133, 434, 117, 29);
+		
+		getContentPane().add(search);
+		detail.setBounds(262, 434, 117, 29);
+		
+		getContentPane().add(detail);
 
 		setSize(750, 600);
 		setVisible(true);
 
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		StudentVO bag = new StudentVO();
 		// 이벤트등록
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id = Integer.parseInt(t_id.getText());
 				String gender = null;
 				String tel = (t_tel01.getText() + "-" + t_tel02.getText() + "-" + t_tel03.getText());
-				
 				if(male.isSelected()) {
 					gender = "남";
 				}else {
 					gender = "여";
 				}
-				UserDefaultJTableDAO userDefaultJTableDAO = new UserDefaultJTableDAO();
-				userDefaultJTableDAO.userListInsert(id, t_name.getText(), gender, tel, t_email.getText());
-				dao.userSelectAll(dt); //새로고침
+				bag.setS_id(Integer.parseInt(t_id.getText()));
+				bag.setS_name(t_name.getText());
+				bag.setS_gender(gender);
+				bag.setS_tel(tel);
+				bag.setS_email(t_email.getText());
 				
+				UserDefaultJTableDAO userDefaultJTableDAO = new UserDefaultJTableDAO();
+				userDefaultJTableDAO.userListInsert(bag);
+				dao.userSelectAll(dt); //새로고침
 				
 				t_id.setText("");
 				t_name.setText("");
@@ -177,13 +188,16 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 				t_tel03.setText("");
 				t_email.setText("");
 				
+				UserJDailogGUI.messageBox(jsp, "등록완료");
+				
 			}
 		});
 
 		update.addActionListener(this);
 		delete.addActionListener(this);
 		quit.addActionListener(this);
-		serach.addActionListener(this);
+		search.addActionListener(this);
+		detail.addActionListener(this);
 
 		// 모든레코드를 검색하여 DefaultTableModle에 올리기
 		dao.userSelectAll(dt);
@@ -230,28 +244,15 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 				UserJDailogGUI.messageBox(this, "레코드가 삭제되지 않았습니다.");
 			}
 
-		} else if (e.getSource() == quit) {// 종료 메뉴아이템 클릭
+		}else if(e.getSource() == search) { // 조회 버튼 클릭
+			new UserSelectJDailog(this);
+		}
+		 else if (e.getSource() == detail) {	// 학생상세정보
+				new InfoUI(this);
+				dispose();
+		}else if (e.getSource() == quit) {// 종료 메뉴아이템 클릭
 			System.exit(0);
 
-		} else if (e.getSource() == serach) {// 검색 버튼 클릭
-			// JComboBox에 선택된 value 가져오기
-			String fieldName = combo.getSelectedItem().toString();
-			System.out.println("필드명 " + fieldName);
-
-			if (fieldName.trim().equals("ALL")) {// 전체검색
-				dao.userSelectAll(dt);
-				if (dt.getRowCount() > 0)
-					jt.setRowSelectionInterval(0, 0);
-			} else {
-				if (jtf.getText().trim().equals("")) {
-					UserJDailogGUI.messageBox(this, "검색단어를 입력해주세요!");
-					jtf.requestFocus();
-				} else {// 검색어를 입력했을경우
-					dao.getUserSearch(dt, fieldName, jtf.getText());
-					if (dt.getRowCount() > 0)
-						jt.setRowSelectionInterval(0, 0);
-				}
-			}
 		}
 
 	}// actionPerformed()----------

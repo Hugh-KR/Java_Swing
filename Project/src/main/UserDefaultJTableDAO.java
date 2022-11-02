@@ -78,15 +78,15 @@ public class UserDefaultJTableDAO {
   /**
    * userlist 회원가입하는 기능 메소드
    * */
-  public int userListInsert(int s_id, String s_name, String s_gender, String s_tel, String s_email) {
+  public int userListInsert(StudentVO bag) {
       int result = 0;
       try {
           ps = con.prepareStatement("insert into student values(?,?,?,?,?)");
-          ps.setInt(1, s_id);
-          ps.setString(2, s_name);
-          ps.setString(3, s_gender);
-          ps.setString(4, s_tel);
-          ps.setString(5, s_email);
+          ps.setInt(1, bag.s_id);
+          ps.setString(2, bag.s_name);
+          ps.setString(3, bag.s_gender);
+          ps.setString(4, bag.s_tel);
+          ps.setString(5, bag.s_email);
 
           result = ps.executeUpdate(); //실행 -> 저장
 
@@ -119,7 +119,7 @@ public class UserDefaultJTableDAO {
 
               t_model.addRow(data); //DefaultTableModel에 레코드 추가
           }
-
+          System.out.println(t_model);
       } catch (SQLException e) {
           System.out.println(e + "=> userSelectAll fail");
       } finally {
@@ -206,5 +206,85 @@ public class UserDefaultJTableDAO {
       }
 
   }//getUserSearch()
+  
+  public InfoVO readInfo(int id) {
+		InfoVO vo = null;
+		
+		try {
+			String sql = "select s_id, s_name, ifnull(max(grade),0) grade, ifnull(max(state),0) state, ifnull(max(college),0) college, ifnull(max(major),0) major from student s left outer join studentinfo i on s.s_id =i.studentid where s_id=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			rs = ps.executeQuery();
+	
+			if(rs.next()) {
+				int studentid = rs.getInt("s_id");
+				String name = rs.getString("s_name");
+				int grade = rs.getInt("grade");
+				String state = rs.getString("state");
+				String college = rs.getString("college");
+				String major = rs.getString("major");				
+				
+				vo = new InfoVO();
+				
+				vo.setId(studentid);
+				vo.setName(name);
+				vo.setGrade(grade);
+				vo.setState(state);
+				vo.setCollege(college);
+				vo.setMajor(major);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
+	
+	public InfoVO addInfo(int id, int grade, String state, String college, String major) {
+		InfoVO vo = null;
+		
+		try {
+			String sql = "insert into studentinfo values(?, ?, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, grade);
+			ps.setString(3, state);
+			ps.setString(4, college);
+			ps.setString(5, major);
+			
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
+	
+	public InfoVO updateInfo(int id, int grade, String state, String college, String major) {
+		InfoVO vo = null;
+		
+		try {	
+			String sql = "update studentinfo set grade=?, state=?, college=?, major=? where studentid=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, grade);
+			ps.setString(2, state);
+			ps.setString(3, college);
+			ps.setString(4, major);
+			ps.setInt(5, id);
+			
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
 
 }// 클래스끝
