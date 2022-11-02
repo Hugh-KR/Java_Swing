@@ -5,35 +5,46 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-// ************ user, password 3개 변경해야함 ***************
-
 public class InfoDAO {
+	Connection con = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
 	
-	public InfoVO readInfo(int id) {
-		InfoVO vo = null;
-		
+	public InfoDAO() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("1. 드라이버 설정 성공");
 			
 			String url = "jdbc:mysql://localhost:3306/mydb";
 			String user = "root";
 			String password = "1234";
 			
-			Connection con = DriverManager.getConnection(url, user, password);
-			System.out.println("2. db 연결 성공 ~!");
-			
+			con = DriverManager.getConnection(url, user, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dbClose() {
+	      try {
+	          if (rs != null) rs.close();
+	          if (ps != null) ps.close();
+	      } catch (Exception e) {
+	          System.out.println(e + "dbClose fail");
+	      }
+	}
+	
+	public InfoVO readInfo(int id) {
+		InfoVO vo = null;
+		
+		try {
 			String sql = "select s_id, s_name, ifnull(max(grade),0) grade, ifnull(max(state),0) state, ifnull(max(college),0) college, ifnull(max(major),0) major from student s left outer join studentinfo i on s.s_id =i.studentid where s_id=?";
 			
-			PreparedStatement ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
-			System.out.println("3. sql문 생성 성공 ~!");
 			
-			ResultSet rs = ps.executeQuery();
-			System.out.println("4. sql문 db서버로 전송 성공 ~!");
+			rs = ps.executeQuery();
 	
 			if(rs.next()) {
-				System.out.println("검색 결과가 있음");
 				int studentid = rs.getInt("s_id");
 				String name = rs.getString("s_name");
 				int grade = rs.getInt("grade");
@@ -49,16 +60,12 @@ public class InfoDAO {
 				vo.setState(state);
 				vo.setCollege(college);
 				vo.setMajor(major);
-				
 			}
-			
-			ps.close();
-			con.close();
-			rs.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			dbClose();
+		}
 		return vo;
 	}
 	
@@ -66,69 +73,43 @@ public class InfoDAO {
 		InfoVO vo = null;
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("1. 드라이버 설정 성공");
-			
-			String url = "jdbc:mysql://localhost:3306/mydb";
-			String user = "root";
-			String password = "1234";
-			
-			Connection con = DriverManager.getConnection(url, user, password);
-			System.out.println("2. db 연결 성공 ~!");
-			
 			String sql = "insert into studentinfo values(?, ?, ?, ?, ?)";
-			PreparedStatement ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.setInt(2, grade);
 			ps.setString(3, state);
 			ps.setString(4, college);
 			ps.setString(5, major);
-			System.out.println("3. sql문 생성 성공 ~!");
 			
 			ps.executeUpdate();
-			System.out.println("4. sql문 db서버로 전송 성공 ~!");
-		
-			ps.close();
-			con.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			dbClose();
+		}
 		return vo;
 	}
 	
 	public InfoVO updateInfo(int id, int grade, String state, String college, String major) {
 		InfoVO vo = null;
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("1. 드라이버 설정 성공");
-			
-			String url = "jdbc:mysql://localhost:3306/mydb";
-			String user = "root";
-			String password = "1234";
-			
-			Connection con = DriverManager.getConnection(url, user, password);
-			System.out.println("2. db 연결 성공 ~!");
-			
+		try {	
 			String sql = "update studentinfo set grade=?, state=?, college=?, major=? where studentid=?";
-			PreparedStatement ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.setInt(1, grade);
 			ps.setString(2, state);
 			ps.setString(3, college);
 			ps.setString(4, major);
 			ps.setInt(5, id);
-			System.out.println("3. sql문 생성 성공 ~!");
 			
 			ps.executeUpdate();
-			System.out.println("4. sql문 db서버로 전송 성공 ~!");
-			
-			ps.close();
-			con.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			dbClose();
+		}
 		return vo;
 	}
 }

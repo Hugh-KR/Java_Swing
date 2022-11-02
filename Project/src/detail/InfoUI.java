@@ -137,12 +137,9 @@ public class InfoUI {
 
 		String studentidStr = textId.getText();
 		int studentid = Integer.parseInt(studentidStr);
-		System.out.println(studentid);
 
 		InfoDAO dao = new InfoDAO();
 		InfoVO vo = dao.readInfo(studentid);
-
-		System.out.println(vo.getName());
 
 		/* studentinfo 테이블에 정보가 없을 때 */
 		if((vo.getGrade()) == 0) {	
@@ -205,8 +202,6 @@ public class InfoUI {
 		String splitId = studentidStr.substring(0, 4); // 학번 중 몇 학번인지 자르기 EX) 2019
 		int year = Integer.parseInt(splitId) + 4; // 학번 숫자로 변경 후 +4년
 		textYear.setText(String.valueOf(year));
-		
-		/* 수정 버튼 클릭 시 */
 		
 		f.setVisible(true);
 
