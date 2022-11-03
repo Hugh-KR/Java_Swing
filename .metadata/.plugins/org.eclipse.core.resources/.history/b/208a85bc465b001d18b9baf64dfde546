@@ -108,7 +108,7 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 
 		t_name.setBounds(133, 20, 130, 26);
 		t_id.setBounds(525, 20, 130, 26);
-		t_email.setBounds(133, 66, 220, 26);
+		t_email.setBounds(133, 66, 130, 26);
 		t_tel01.setBounds(135, 114, 61, 26);
 		t_tel02.setBounds(215, 114, 61, 26);
 		t_tel03.setBounds(292, 114, 61, 26);

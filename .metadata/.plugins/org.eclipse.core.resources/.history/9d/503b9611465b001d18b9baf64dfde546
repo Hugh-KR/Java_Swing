@@ -133,7 +133,7 @@ public class UserDefaultJTableDAO {
   public int userDelete(String s_id) {
       int result = 0;
       try {
-          ps = con.prepareStatement("delete from student where s_id = ? ");
+          ps = con.prepareStatement("delete a,b from student a left join studentinfo b where s_id = ? ");
           ps.setString(1, s_id.trim());
           result = ps.executeUpdate();
 
