@@ -34,30 +34,32 @@ public class UserSelectJDailog extends JDialog implements ActionListener{
 		getContentPane().setLayout(null);
 		
 		
-		String[] comboName = {"  ALL  ","  s_id  ","  s_id  ", " s_name ", " s_gender "," s_tel "," s_email " };
+		String[] comboName = {"  ALL  ","  s_id  ", " s_name ", " s_gender "," s_tel "," s_email " };
 		combo = new JComboBox(comboName);
 		combo.setFont(new Font("굴림", Font.BOLD, 18));
-		combo.setBounds(80, 10, 127, 23);
+		combo.setBounds(80, 42, 127, 23);
 		getContentPane().add(combo);
 		
 		t1 = new JTextField();
-		t1.setBounds(34, 66, 208, 29);
+		t1.setBounds(43, 98, 208, 29);
 		getContentPane().add(t1);
 		t1.setColumns(10);
 		
 		JButton searchbtn = new JButton("찾기");
 		searchbtn.setBackground(Color.CYAN);
 		searchbtn.setFont(new Font("굴림", Font.BOLD, 21));
-		searchbtn.setBounds(34, 135, 86, 39);
+		searchbtn.setBounds(43, 151, 86, 39);
 		getContentPane().add(searchbtn);
 		
 		JButton cancelbtn = new JButton("취소");
 		cancelbtn.setFont(new Font("굴림", Font.BOLD, 21));
 		cancelbtn.setBackground(Color.RED);
-		cancelbtn.setBounds(156, 135, 86, 39);
+		cancelbtn.setBounds(165, 151, 86, 39);
 		getContentPane().add(cancelbtn);
 		
 		setSize(300,250);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setVisible(true);
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

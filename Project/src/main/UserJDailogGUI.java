@@ -89,10 +89,12 @@ public class UserJDailogGUI extends JDialog implements ActionListener {
 		add(pc, "Center");
 		add(ps, "South");
 
-		setSize(300, 350);
-		setVisible(true);
 
+		setSize(300, 350);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
 
 		// 이벤트등록
 		confirm.addActionListener(this); // 가입/수정 이벤트등록

@@ -206,5 +206,85 @@ public class UserDefaultJTableDAO {
       }
 
   }//getUserSearch()
+  
+  public InfoVO readInfo(int id) {
+		InfoVO vo = null;
+		
+		try {
+			String sql = "select s_id, s_name, grade, state, college, major from student s left outer join studentinfo i on s.s_id = i.studentid where s_id=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			rs = ps.executeQuery();
+	
+			if(rs.next()) {
+				int studentid = rs.getInt("s_id");
+				String name = rs.getString("s_name");
+				int grade = rs.getInt("grade");
+				String state = rs.getString("state");
+				String college = rs.getString("college");
+				String major = rs.getString("major");				
+				
+				vo = new InfoVO();
+				
+				vo.setId(studentid);
+				vo.setName(name);
+				vo.setGrade(grade);
+				vo.setState(state);
+				vo.setCollege(college);
+				vo.setMajor(major);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
+	
+	public InfoVO addInfo(int id, int grade, String state, String college, String major) {
+		InfoVO vo = null;
+		
+		try {
+			String sql = "insert into studentinfo values(?, ?, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.setInt(2, grade);
+			ps.setString(3, state);
+			ps.setString(4, college);
+			ps.setString(5, major);
+			
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
+	
+	public InfoVO updateInfo(int id, int grade, String state, String college, String major) {
+		InfoVO vo = null;
+		
+		try {	
+			String sql = "update studentinfo set grade=?, state=?, college=?, major=? where studentid=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, grade);
+			ps.setString(2, state);
+			ps.setString(3, college);
+			ps.setString(4, major);
+			ps.setInt(5, id);
+			
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return vo;
+	}
 
 }// 클래스끝

@@ -80,7 +80,7 @@ public class SearchMember extends JFrame {
 				MemberDB dao = new MemberDB();
                 //3. dao안에 데이터를 삽입을 담당할 메소드를 구현하기
 				dao.searchId(tel);
-				JOptionPane.showMessageDialog(null, sid);
+				
 				Login login = new Login();
 				dispose();
 			}

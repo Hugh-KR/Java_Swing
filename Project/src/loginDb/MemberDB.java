@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import login.MemberVO;
 import login.SearchMember;
 
@@ -18,6 +20,9 @@ public class MemberDB {
 	String url = "jdbc:mysql://localhost:3306/mydb";
 	String userid = "abcd";
 	String pass = "12345678";
+	
+	String SearchId = null;
+	String SearchPw = null;
 
 	Connection conn = null; // 연결
 	Statement stmt = null; // sql문 전달
@@ -62,8 +67,12 @@ public class MemberDB {
 			if (rs.next()) {
 				SearchMember data = new SearchMember();
 				//data.setsid();
-				System.out.println(rs.getString("id"));
-				System.out.println(rs.getString("password"));
+				SearchId = rs.getString("id");
+				SearchPw = rs.getString("password");
+				SearchMember mem = new SearchMember();
+				System.out.println(SearchId);
+				System.out.println(SearchPw);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -77,6 +86,7 @@ public class MemberDB {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 
 	public boolean checkId(String id) {

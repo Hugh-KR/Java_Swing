@@ -151,40 +151,47 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 			}
 		});
 
-		setSize(750, 600);
-		setVisible(true);
 
+		setSize(750, 600);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
 
 		StudentVO bag = new StudentVO();
 		// 이벤트등록
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String gender = null;
-				String tel = (t_tel01.getText() + "-" + t_tel02.getText() + "-" + t_tel03.getText());
-				if (male.isSelected()) {
-					gender = "남";
-				} else {
-					gender = "여";
+				try {
+					String gender = null;
+					String tel = (t_tel01.getText() + "-" + t_tel02.getText() + "-" + t_tel03.getText());
+					if (male.isSelected()) {
+						gender = "남";
+					} else {
+						gender = "여";
+					}
+					bag.setS_id(Integer.parseInt(t_id.getText()));
+					bag.setS_name(t_name.getText());
+					bag.setS_gender(gender);
+					bag.setS_tel(tel);
+					bag.setS_email(t_email.getText());
+
+					UserDefaultJTableDAO userDefaultJTableDAO = new UserDefaultJTableDAO();
+					userDefaultJTableDAO.userListInsert(bag);
+					dao.userSelectAll(dt); // 새로고침
+
+					t_id.setText("");
+					t_name.setText("");
+					t_tel01.setText("");
+					t_tel02.setText("");
+					t_tel03.setText("");
+					t_email.setText("");
+
+					UserJDailogGUI.messageBox(jsp, "등록완료");
+				} catch (NumberFormatException e1) {
+					UserJDailogGUI.messageBox(jsp, "값을 입력하세요.");
+					System.out.println(e1 + "=> Insert fail");
 				}
-				bag.setS_id(Integer.parseInt(t_id.getText()));
-				bag.setS_name(t_name.getText());
-				bag.setS_gender(gender);
-				bag.setS_tel(tel);
-				bag.setS_email(t_email.getText());
-
-				UserDefaultJTableDAO userDefaultJTableDAO = new UserDefaultJTableDAO();
-				userDefaultJTableDAO.userListInsert(bag);
-				dao.userSelectAll(dt); // 새로고침
-
-				t_id.setText("");
-				t_name.setText("");
-				t_tel01.setText("");
-				t_tel02.setText("");
-				t_tel03.setText("");
-				t_email.setText("");
-
-				UserJDailogGUI.messageBox(jsp, "등록완료");
 
 			}
 		});

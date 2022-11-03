@@ -23,6 +23,8 @@ public class InfoUI {
 	public InfoUI(MenuJTabaleExam me) {
 		JFrame f = new JFrame();
 		f.setSize(635, 345);
+		f.setLocationRelativeTo(null);
+		f.setResizable(false);
 		f.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("학번");
@@ -136,7 +138,7 @@ public class InfoUI {
 		String studentidStr = textId.getText();
 		int studentid = Integer.parseInt(studentidStr);
 
-		InfoDAO dao = new InfoDAO();
+		UserDefaultJTableDAO dao = new UserDefaultJTableDAO();
 		InfoVO vo = dao.readInfo(studentid);
 
 		/* studentinfo 테이블에 정보가 없을 때 */

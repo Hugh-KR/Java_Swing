@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import loginDb.MemberDB;
+import main.MenuJTabaleExam;
 
 public class Login extends JFrame {
 
@@ -75,8 +76,13 @@ public class Login extends JFrame {
 				int result = dao.login(id, pwd);
 				if (id.equals("manager")) {
 					JOptionPane.showMessageDialog(null, "관리자로 로그인 했습니다.");
+					MenuJTabaleExam main = new MenuJTabaleExam();
+					dispose();
 				} else if (result == 1) {
 					JOptionPane.showMessageDialog(null, " 로그인 했습니다.");
+					MenuJTabaleExam main = new MenuJTabaleExam();
+					dispose();
+					
 				} else if (result == 0) {
 					JOptionPane.showMessageDialog(null, " 로그인이 실패했습니다.");
 				}
