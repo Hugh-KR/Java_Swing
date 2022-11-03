@@ -205,4 +205,6 @@ public class InfoUI {
 
 	}
 
+	public static void main(String[] args) {
+	}
 }

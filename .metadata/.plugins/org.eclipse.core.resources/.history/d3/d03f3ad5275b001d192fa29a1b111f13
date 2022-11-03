@@ -78,16 +78,16 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 		getContentPane().add(detail);
 
 		insert.setBounds(6, 537, 100, 30);
-		update.setBounds(107, 537, 100, 30);
-		delete.setBounds(215, 537, 100, 30);
-		detail.setBounds(323, 537, 100, 30);
-		search.setBounds(435, 537, 100, 30);
-		email.setBounds(542, 537, 100, 30);
-		quit.setBounds(644, 537, 100, 30);
-		
-
+		update.setBounds(99, 537, 100, 30);
+		delete.setBounds(191, 537, 100, 30);
+		quit.setBounds(744, 537, 100, 30);
 		getContentPane().setLayout(null);
-		jsp.setBounds(0, 160, 750, 372);
+		email.setBounds(470, 537, 100, 30);
+		search.setBounds(379, 537, 100, 30);
+		detail.setBounds(285, 537, 100, 30);
+		
+		jsp.setBounds(0, 160, 750, 236);
+
 		getContentPane().add(jsp);
 
 		lable_Name.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,17 +101,17 @@ public class MenuJTabaleExam extends JFrame implements ActionListener {
 		lable_Name.setBounds(62, 25, 61, 16);
 		lable_Id.setBounds(447, 25, 61, 16);
 		lable_email.setBounds(62, 71, 61, 16);
-		lable_tel.setBounds(62, 119, 61, 16);
-		lable_telText01.setBounds(193, 119, 28, 16);
-		lable_telTex02.setBounds(270, 119, 28, 16);
+		lable_tel.setBounds(62, 132, 61, 16);
+		lable_telText01.setBounds(191, 132, 28, 16);
+		lable_telTex02.setBounds(275, 132, 28, 16);
 		lable_gender.setBounds(447, 71, 61, 16);
 
 		t_name.setBounds(133, 20, 130, 26);
 		t_id.setBounds(525, 20, 130, 26);
 		t_email.setBounds(133, 66, 130, 26);
-		t_tel01.setBounds(135, 114, 61, 26);
-		t_tel02.setBounds(215, 114, 61, 26);
-		t_tel03.setBounds(292, 114, 61, 26);
+		t_tel01.setBounds(133, 127, 61, 26);
+		t_tel02.setBounds(217, 127, 61, 26);
+		t_tel03.setBounds(301, 127, 61, 26);
 		female.setBounds(603, 67, 52, 23);
 		male.setBounds(525, 67, 52, 23);
 
