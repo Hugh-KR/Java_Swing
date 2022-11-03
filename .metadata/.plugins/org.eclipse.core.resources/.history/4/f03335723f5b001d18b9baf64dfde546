@@ -136,7 +136,7 @@ public class InfoUI {
 		String studentidStr = textId.getText();
 		int studentid = Integer.parseInt(studentidStr);
 
-		InfoDAO dao = new InfoDAO();
+		UserDefaultJTableDAO dao = new UserDefaultJTableDAO();
 		InfoVO vo = dao.readInfo(studentid);
 
 		/* studentinfo 테이블에 정보가 없을 때 */
